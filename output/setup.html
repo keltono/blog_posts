@@ -1,0 +1,298 @@
+<h2><a href="/articles.html">Back to index</a></h2><!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Kelton O’Brien" />
+  <title>self-host your own file sharing website</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #232629;
+        color: #7a7c7d;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #7a7c7d;  padding-left: 4px; }
+    div.sourceCode
+      { color: #cfcfc2; background-color: #232629; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #cfcfc2; } /* Normal */
+    code span.al { color: #95da4c; background-color: #4d1f24; font-weight: bold; } /* Alert */
+    code span.an { color: #3f8058; } /* Annotation */
+    code span.at { color: #2980b9; } /* Attribute */
+    code span.bn { color: #f67400; } /* BaseN */
+    code span.bu { color: #7f8c8d; } /* BuiltIn */
+    code span.cf { color: #fdbc4b; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #3daee9; } /* Char */
+    code span.cn { color: #27aeae; font-weight: bold; } /* Constant */
+    code span.co { color: #7a7c7d; } /* Comment */
+    code span.cv { color: #7f8c8d; } /* CommentVar */
+    code span.do { color: #a43340; } /* Documentation */
+    code span.dt { color: #2980b9; } /* DataType */
+    code span.dv { color: #f67400; } /* DecVal */
+    code span.er { color: #da4453; text-decoration: underline; } /* Error */
+    code span.ex { color: #0099ff; font-weight: bold; } /* Extension */
+    code span.fl { color: #f67400; } /* Float */
+    code span.fu { color: #8e44ad; } /* Function */
+    code span.im { color: #27ae60; } /* Import */
+    code span.in { color: #c45b00; } /* Information */
+    code span.kw { color: #cfcfc2; font-weight: bold; } /* Keyword */
+    code span.op { color: #cfcfc2; } /* Operator */
+    code span.ot { color: #27ae60; } /* Other */
+    code span.pp { color: #27ae60; } /* Preprocessor */
+    code span.re { color: #2980b9; background-color: #153042; } /* RegionMarker */
+    code span.sc { color: #3daee9; } /* SpecialChar */
+    code span.ss { color: #da4453; } /* SpecialString */
+    code span.st { color: #f44f4f; } /* String */
+    code span.va { color: #27aeae; } /* Variable */
+    code span.vs { color: #da4453; } /* VerbatimString */
+    code span.wa { color: #da4453; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<link rel="stylesheet" href="https://latex.now.sh/style.css">
+<link rel="stylesheet" href="/styles/blagstyle.css"></head>
+<body>
+<header id="title-block-header">
+<h1 class="title">self-host your own file sharing website</h1>
+<p class="author">Kelton O’Brien</p>
+</header>
+<p>If you talk to me for long enough over text, you will probably end up getting a link that looks like this:</p>
+<p><a href="https://keltono.net/.share/.HyiB0R6+AcvZqFkOgpej-ascii_cats.htm">https://keltono.net/.share/.HyiB0R6+AcvZqFkOgpej-ascii_cats.htm</a></p>
+<p>or maybe one that looks like this:</p>
+<p><a href="https://keltono.net/.share/screenshots/.Lq7%2bL52y6AZwg3pYdJ.png">https://keltono.net/.share/screenshots/.Lq7%2bL52y6AZwg3pYdJ.png</a></p>
+<p>I don’t think I’ve explained my setup for sharing files and screenshots in detail yet. I’ve found it really useful, especially for files that are too large to be embedded in certain chat applications, or situations where embedding is not an option (IRC, this blog, my résumé, etc.).</p>
+<h2 id="technical-details">Technical details</h2>
+<p>There are a few distinct parts to this.</p>
+<h3 id="the-server">The server</h3>
+<p>This is probably the simplest part. Simply run an <a href="https://nginx.org/en/">nginx</a> server on an internet-exposed machine, and turn on autoindexing for the folder you want. (e.g /.share). The relevant part of my nginx.conf looks like this:</p>
+<pre class="nginx"><code>#main
+server {
+    listen  443 ssl;
+    root /mnt/website;
+    server_name keltono.net  www.keltono.net;
+    
+    ssl_certificate /etc/letsencrypt/live/keltono.net/fullchain.pem;
+    # ... more ssl stuff ...
+
+    location /.share {
+        root /mnt;
+        autoindex on;
+    }
+}
+</code></pre>
+<p>now, when i make a file <code>/mnt/.share/filename</code> on the server, it will show up as <code>https://keltono.net/.share/filename</code> on the website. The one thing to note about this approach is that if you go to just <code>https://keltono.net/.share</code> you will be able to see (and click on) all of the files that are not hidden (don’t start with a <code>'.'</code>). This is not an issue if you simply make all of the files in the given directory start with a period. If you simply move a file to this folder without changing the name, it might be easy to guess. This is probably fine for some, but for the sake of privacy, adding some entropy to the file names is a good idea.</p>
+<h3 id="filename-generation">Filename generation</h3>
+<p>the randomness is done by just grabbing 20 characters from <a href="https://en.wikipedia.org/wiki//dev/random">/dev/urandom</a> and then converting that to base 64. this is just a one line function.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">randomPath()</span> <span class="kw">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> .<span class="va">$(</span><span class="fu">head</span> /dev/urandom <span class="at">-c</span> 20 <span class="kw">|</span> <span class="ex">base64</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-</span> <span class="at">-c</span> 20 <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> /<span class="va">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<p>for functions that take in a specific file, (i.e, the file sharing command, but not the screenshot command), this is combined with the given file to get the desired result – something like <code>PATHNAME=$(randomPath)-$(basename "$1")</code>.</p>
+<p>After this, the new filenames may not be valid urls, such as if spaces are in the filename. For this, the <code>rawurlencode</code> function is used.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rawurlencode()</span> <span class="kw">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">local</span> <span class="va">string=</span><span class="st">&quot;</span><span class="va">${1}</span><span class="st">&quot;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="bu">local</span> <span class="va">strlen=${</span><span class="op">#</span><span class="va">string}</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">local</span> <span class="va">encoded=</span><span class="st">&quot;&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="bu">local</span> <span class="va">pos</span> <span class="va">c</span> <span class="va">o</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="kw">((</span> <span class="va">pos</span><span class="op">=</span><span class="dv">0</span> <span class="kw">;</span> <span class="va">pos</span><span class="op">&lt;</span><span class="va">strlen</span> <span class="kw">;</span> <span class="va">pos</span><span class="op">++</span> <span class="kw">));</span> <span class="cf">do</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>     <span class="va">c</span><span class="op">=</span><span class="va">${string</span><span class="op">:</span><span class="va">$pos</span><span class="op">:</span><span class="dv">1</span><span class="va">}</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>     <span class="cf">case</span> <span class="st">&quot;</span><span class="va">$c</span><span class="st">&quot;</span> <span class="kw">in</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        <span class="ss">[-_.~a-zA-Z0-9]</span> <span class="kw">)</span> <span class="va">o</span><span class="op">=</span><span class="st">&quot;</span><span class="va">${c}</span><span class="st">&quot;</span> <span class="cf">;;</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="pp">*</span> <span class="kw">)</span>               <span class="bu">printf</span> <span class="at">-v</span> o <span class="st">&#39;%%%02x&#39;</span> <span class="st">&quot;&#39;</span><span class="va">$c</span><span class="st">&quot;</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>     <span class="cf">esac</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>     <span class="va">encoded</span><span class="op">+=</span><span class="st">&quot;</span><span class="va">${o}</span><span class="st">&quot;</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">done</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="st">&quot;</span><span class="va">${encoded}</span><span class="st">&quot;</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div>
+<p>This and the <code>randomPath</code> function are both helper functions for the functions that do all of the interesting things.</p>
+<h3 id="file-upload">File upload</h3>
+<p>now that most of the bookkeeping is done, these functions are relatively simple. Now we just rsync the file up to the server.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">share()</span> <span class="kw">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">PATHNAME</span><span class="op">=</span><span class="va">$(</span><span class="ex">randomPath</span><span class="va">)</span>-<span class="va">$(</span><span class="fu">basename</span> <span class="st">&quot;</span><span class="va">$1</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rsync</span> <span class="at">-avzz</span> <span class="va">$1</span> servername:/path/to/.share/<span class="st">&quot;</span><span class="va">$PATHNAME</span><span class="st">&quot;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> https://your.website/.share/<span class="va">$(</span><span class="ex">rawurlencode</span> <span class="st">&quot;</span><span class="va">$PATHNAME</span><span class="st">&quot;</span><span class="va">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
+<p>There you go! Click or copy that link and you should have a link to the file you wanted to share. If you’re feeling extra lazy, you can also have it copy the link into your clipboard automatically by changing the last line to <code>echo https://your.website/.share/$(rawurlencode "$PATHNAME") | tee /dev/tty | xclip -sel clip</code> (if you use X11. I’m sure there’s an xclip equivalent for wayland).</p>
+<p>the command for taking a screenshot is almost identical, just with a couple extra lines for actually taking the screenshot.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sc()</span> <span class="kw">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="ex">maim</span> <span class="at">-s</span> /tmp/temp_screen_cap.png</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">PATHNAME</span><span class="op">=</span><span class="va">$(</span><span class="ex">randomPath</span><span class="va">)</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rsync</span> <span class="at">-avzz</span> /tmp/temp_screen_cap.png cattown:/mnt/.share/screenshots/<span class="st">&quot;</span><span class="va">$PATHNAME</span><span class="st">&quot;</span>.png</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="va">u</span><span class="op">=</span><span class="st">&quot;https://keltono.net/.share/screenshots/</span><span class="va">$(</span><span class="ex">rawurlencode</span> <span class="st">&quot;</span><span class="va">$PATHNAME</span><span class="st">&quot;</span><span class="va">)</span><span class="st">.png&quot;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$u</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="va">$u</span> <span class="kw">|</span> <span class="ex">xclip</span> <span class="at">-sel</span> clip</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rm</span> <span class="at">-f</span> /tmp/temp_screen_cap.png</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="er">}</span></span></code></pre></div>
+<p>You will need to have <a href="https://github.com/naelstrof/maim">maim</a> installed for this to work. Scrot also works fine.</p>
+<p>You can can put these in your your <code>~/.bashrc</code>, <code>~/.bash_aliases</code>, or in a separate shell script that you can bind to a hotkey (such as printscreen). If you have a device with reasonable uptime and download/upload speeds, you already have a much nicer alternative to imgur or dropbox or what else have you that you can use easily in the command line.</p>
+<p>Although It would not be super difficult to wrap this up into a neat package, the product is sufficiently simple where I think it being a set of bash scripts invoking rsync is fine.</p>
+<p>Being self-hosted, there are several advantages over commercial image/file hosting websites. Firstly, you can link directly to the file you want – no mandatory javascript, ads, or bloat. Secondly, you don’t have to depend on some other website. If you use a non-self-hosted solution, it might disappear one day (RIP firefox send) or become terrible (RIP imgur). In my view, trying to send someone a large file is an unsolved problem unless you have a set up like this.</p>
+<h2 id="future-plans">Future plans</h2>
+<p>You may notice that this doesn’t really work well for systems you don’t have terminal acess to. Or non-unix machines. Or phones. The future work involves writing a quick website in <a href="https://flask.palletsprojects.com/en/1.1.x/">flask</a> or <a href="https://rocket.rs/">rocket</a> that has the same function with a basic interface. I will update this post with an addendum if/when that happens.</p>
+</body>
+</html>
