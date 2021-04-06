@@ -121,3 +121,20 @@ In my view, trying to send someone a large file is an unsolved problem unless yo
 You may notice that this doesn't really work well for systems you don't have terminal acess to. 
 Or non-unix machines. Or phones. The future work involves writing a quick website in [flask](https://flask.palletsprojects.com/en/1.1.x/) or [rocket](https://rocket.rs/) that has the same function with a basic interface.
 I will update this post with an addendum if/when that happens.
+
+## Addendum
+
+As promised I have created that website I mentioned above. 
+I ended up writing it in flask as, although rocket merged multipart form a short while ago (in march 2021), I found the documentation to be rather lacking.
+I've released the source [here](https://github.com/keltono/ksend/), but as a word of warning, it's a dirty hack that features great lines like `''' % (forward,forward,forward)`.
+It would not be difficult to fix (as it really would only involve using a real template and a seperate javascript file), but it serves my purposes as is now.
+It's being hosted on this website at [keltono.net/upload](https://keltono.net/upload), which is [password protected](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/) for obvious reasons.
+Here are some screenshots if you don't feel like cloning it and running it locally:
+
+#### Upload screen
+![](https://keltono.net/.share/screenshots/.75dSAX2cZJlyd2RFKm4.png)
+
+#### Success screen
+![](https://keltono.net/.share/screenshots/.akjWgjhi9u%2bQv1SNIXUq.png)
+
+If you want to use the code for your own set up, feel free to [send me an email](https://keltono.net/about.html) if you want help figuring out what needs to change so it is no longer spesific to my setup.

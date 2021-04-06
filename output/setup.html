@@ -1,4 +1,4 @@
-<h2><a href="/articles.html">Back to index</a></h2><!DOCTYPE html>
+<h2><a href="/articles.html">Back to Articles</a></h2><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
   <meta charset="utf-8" />
@@ -294,5 +294,12 @@ server {
 <p>Being self-hosted, there are several advantages over commercial image/file hosting websites. Firstly, you can link directly to the file you want – no mandatory javascript, ads, or bloat. Secondly, you don’t have to depend on some other website. If you use a non-self-hosted solution, it might disappear one day (RIP firefox send) or become terrible (RIP imgur). In my view, trying to send someone a large file is an unsolved problem unless you have a set up like this.</p>
 <h2 id="future-plans">Future plans</h2>
 <p>You may notice that this doesn’t really work well for systems you don’t have terminal acess to. Or non-unix machines. Or phones. The future work involves writing a quick website in <a href="https://flask.palletsprojects.com/en/1.1.x/">flask</a> or <a href="https://rocket.rs/">rocket</a> that has the same function with a basic interface. I will update this post with an addendum if/when that happens.</p>
+<h2 id="addendum">Addendum</h2>
+<p>As promised I have created that website I mentioned above. I ended up writing it in flask as, although rocket merged multipart form a short while ago (in march 2021), I found the documentation to be rather lacking. I’ve released the source <a href="https://github.com/keltono/ksend/">here</a>, but as a word of warning, it’s a dirty hack that features great lines like <code>''' % (forward,forward,forward)</code>. It would not be difficult to fix (as it really would only involve using a real template and a seperate javascript file), but it serves my purposes as is now. It’s being hosted on this website at <a href="https://keltono.net/upload">keltono.net/upload</a>, which is <a href="https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/">password protected</a> for obvious reasons. Here are some screenshots if you don’t feel like cloning it and running it locally:</p>
+<h4 id="upload-screen">Upload screen</h4>
+<p><img src="https://keltono.net/.share/screenshots/.75dSAX2cZJlyd2RFKm4.png" /></p>
+<h4 id="success-screen">Success screen</h4>
+<p><img src="https://keltono.net/.share/screenshots/.akjWgjhi9u%2bQv1SNIXUq.png" /></p>
+<p>If you want to use the code for your own set up, feel free to <a href="https://keltono.net/about.html">send me an email</a> if you want help figuring out what needs to change so it is no longer spesific to my setup.</p>
 </body>
 </html>
